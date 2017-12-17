@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <h1>{{ quote.symbol }} - {{ quote.price | usd }}</h1>
+    <h3>{{ quote.name }}</h3>
+    <a href="{{ url_for('quote')}}">Get another quote</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+1.  stdint.h is a header file containing fixed-width integral typedefs (alias). These can be used to increase portability between different platforms and systems.
+2.  By using these explicit types defined in stdint.h you make sure a variable is of a very specific type. Instead of char you could set a variable to uint8_t to get an unsigned char (where the normal char could also be signed). The same goes for uint32_t, int32_t or uint16_t. The naming is very clear (uint16_t is in Unsigned Int with 16 bits) and also makes sure you do not suddenly change you int from 16 to 32 bits when the program is run an another system where int is 32 bits by default and you thought is was 16.
+3.  BYTE is one byte, DWORD is 4 bytes (32 bits), LONG is also 4 bytes (32 bits) but is also signed, WORD is 2 BYTES (or 16 bits)
+4.  0x4d42
+5.  bfSize is the file size of the BMP (this includes the header and all aditional data). biSize is the number of bytes used for BITMAPINFOHEADER structure. This is handy for skipping ahead to the actual color data.
+6.  A negative biHeight means the color data is stored from top to bottom. The origin (0,0) is top-left.
+7.  biBitCount
+8.  fopen returns NULL if the file does not exist, it cannot read the file, the file is blocked/opened already or you do not have the correct permission.
+9.  the third parameter of fread defines the number of blocks or the multiple of the bytes specified as the second parameter should be read. As the fread function in copy.c read the size of BITMAPFILEHEADER and BITMAPINFOHEADER and that data only exists once in a BMP file the program only needs to read 1 block.
+10. padding is 0: (4 - ( 3 * 8) % 4) % 4 = (4 - 24 % 4) % 4 = 4 - 0 % 4 = 0
+11. fseek lets you move the pointer of a file to a specific location based on an offset (both positive and negative) as well as a start position (options a the start of the file, the end of the file or the current position
+12. SEEK_CUR is the current position of the file pointer.

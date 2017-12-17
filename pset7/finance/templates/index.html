@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <h1>Portfolio</h1>
+    <a class="btn btn-success" href="{{ url_for('add_cash') }}" role="button">Add cash</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in portfolio %}
+            {% if stock.total_amount > 0 %}
+            <tr>
+                <td>{{ stock.stock_symbol }}</td>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.total_amount }}</td>
+                <td>{{ stock.price | usd}}</td>
+                <td>{{ (stock.price * stock.total_amount) | usd }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Portfolio value:</td>
+                <td>{{ total | usd }}</td>
+            </tr>
+            <tr>
+                <td colspan="4">Cash balance:</td>
+                <td>{{ user.cash | usd }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>Total balance:</strong</td>
+                <td><strong>{{ (user.cash + total) | usd }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

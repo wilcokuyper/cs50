@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <h1>Sell your stock:</h1>
+    <form action="{{ url_for('sell') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <select autofocus class="form-control" name="symbol">
+                    {% for stock in portfolio %}
+                    <option value="{{ stock.stock_symbol }}">{{ stock.stock_symbol }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="amount" placeholder="25" type="number" min="1" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Sell!</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
